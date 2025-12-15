@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>App</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header id="header" class="hidden">
+  <!-- ❌ plus de texte en dur -->
+  <h1 id="appTitle">Mon titre</h1>
+
+
+  <div class="top">
+    <!-- boutons modes (texte injecté via JS / i18n) -->
+    <button class="btn" data-mode="edit"></button>
+    <button class="btn" data-mode="sou"></button>
+    <button class="btn" data-mode="dom"></button>
+
+    <!-- 🌍 sélection de langue -->
+    <select id="langSelect" class="btn">
+      <option value="fr">FR</option>
+      <option value="en">EN</option>
+      <option value="de">DE</option>
+    </select>
+  </div>
+</header>
+
+<main>
+  <div id="home"></div>
+  <div id="game" class="hidden"></div>
+</main>
+
+<div id="modal-root"></div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
