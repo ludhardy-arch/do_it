@@ -70,3 +70,20 @@ function updateModeButtons() {
     btn.classList.toggle("active", btn.dataset.mode === state.mode);
   });
 }
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen().catch(() => {});
+  } else {
+    document.exitFullscreen();
+  }
+}
+
+function updateFullscreenButton() {
+  const btn = document.getElementById("fullscreenBtn");
+  if (!btn) return;
+  btn.textContent = document.fullscreenElement ? "⛶×" : "⛶";
+}
+
+document.addEventListener("fullscreenchange", updateFullscreenButton);
+
+document.getElementById("fullscreenBtn")?.addEventListener("click", toggleFullscreen);
