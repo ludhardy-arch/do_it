@@ -20,7 +20,7 @@ export const I18N = {
     missingCategoryName: "Nom de catégorie requis",
 
     /* ===== TILES ===== */
-    newTile: "Nouvelle vignette",
+    newTile: "Nouvelle punition",
     text: "Texte",
     image: "Image",
     tileText: "Texte",
@@ -36,7 +36,7 @@ export const I18N = {
     missingText: "Texte requis",
     missingImage: "Image requise",
 
-    confirmDeleteTile: "Supprimer cette vignette ?",
+    confirmDeleteTile: "Supprimer cette punition ?",
     confirmDeleteCategory: "Supprimer cette catégorie et toutes ses vignettes ?",
     confirmResetAll:
       "RESET TOTAL\n\nToutes les données seront supprimées.\n\nContinuer ?"
@@ -61,7 +61,7 @@ export const I18N = {
     missingCategoryName: "Category name required",
 
     /* ===== TILES ===== */
-    newTile: "New tile",
+    newTile: "New punishment",
     text: "Text",
     image: "Image",
     tileText: "Text",
@@ -77,7 +77,7 @@ export const I18N = {
     missingText: "Text required",
     missingImage: "Image required",
 
-    confirmDeleteTile: "Delete this tile?",
+    confirmDeleteTile: "Delete this punishment?",
     confirmDeleteCategory: "Delete this category and all its tiles?",
     confirmResetAll:
       "FULL RESET\n\nAll data will be deleted.\n\nContinue?"
@@ -102,7 +102,7 @@ export const I18N = {
     missingCategoryName: "Kategoriename erforderlich",
 
     /* ===== TILES ===== */
-    newTile: "Neue Kachel",
+    newTile: "Neue bestrafung",
     text: "Text",
     image: "Bild",
     tileText: "Text",
@@ -118,7 +118,7 @@ export const I18N = {
     missingText: "Text erforderlich",
     missingImage: "Bild erforderlich",
 
-    confirmDeleteTile: "Diese Kachel löschen?",
+    confirmDeleteTile: "Diese strafe aufeheben?",
     confirmDeleteCategory:
       "Diese Kategorie und alle Kacheln löschen?",
     confirmResetAll:
