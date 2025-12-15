@@ -325,3 +325,7 @@ main {
     letter-spacing: 1px;
   }
 }
+#fullscreenBtn {
+  min-width: 44px;
+  text-align: center;
+}
