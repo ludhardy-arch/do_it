@@ -334,3 +334,17 @@ main {
   min-width: 44px;
   text-align: center;
 }
+.home-card {
+  max-width: 420px;
+  margin: 0 auto;
+  display: grid;
+  gap: 14px;
+}
+
+.lang-select {
+  padding: 8px;
+  border-radius: 8px;
+  background: #140608;
+  color: inherit;
+  border: 1px solid #555;
+}
