@@ -338,8 +338,3 @@ main {
   min-width: 44px;
   text-align: center;
 }
-.modal .card h3 {
-  color: #42FF3D; /* ← change cette couleur */
-  text-align: center;
-  letter-spacing: 2px;
-}
