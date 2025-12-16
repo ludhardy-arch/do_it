@@ -48,17 +48,6 @@ export function renderGame() {
     <div id="content"></div>
   `;
 
-  /* ===== SÉLECTEUR DE LANGUE (GLOBAL) ===== */
-  const langSelect = document.getElementById("langSelect");
-  if (langSelect) {
-    langSelect.value = state.lang;
-
-    langSelect.onchange = () => {
-      state.lang = langSelect.value;
-      save();
-      render(); // ✅ TOUJOURS PASSER PAR LE ROUTER
-    };
-  }
 
   /* ===== RENDU ===== */
   renderTiles();
