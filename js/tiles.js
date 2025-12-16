@@ -201,7 +201,9 @@ function openCategoryModal() {
         <h3>${t("newCategory")}</h3>
         <input id="catInput" placeholder="${t("categoryName")}">
         <div class="row">
-          <button class="btn" id="createCatBtn">${t("create")}</button>
+          <button class="btn green-action" id="newCatBtn">
+  ➕ ${t("newCategory")}
+</button>
           <button class="btn" id="cancelCatBtn">${t("cancel")}</button>
         </div>
       </div>
