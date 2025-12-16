@@ -9,7 +9,7 @@ export const I18N = {
 
     /* ===== HOME ===== */
     homeTitle: "Accueil",
-    nameSou: "soumis",
+    nameSou: "sub",
     nameDom: "dom",
     start: "Commencer",
 
