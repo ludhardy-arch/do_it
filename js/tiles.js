@@ -30,18 +30,27 @@ export async function renderTiles() {
     document.getElementById("newCatBtn").onclick = openCategoryModal;
     document.getElementById("resetAllBtn").onclick = resetAll;
   }
+
   else if (state.mode === "sou") {
     editBar.classList.remove("hidden");
     editBar.innerHTML = `
       <div class="row">
+        <button class="btn" id="selectAllBtn">😈 give me your worst!</button>
         <button class="btn" id="resetColorsBtn">${t("resetSelection")}</button>
       </div>
     `;
+
+    document.getElementById("selectAllBtn").onclick = async () => {
+      selectAllTiles();
+      await renderTiles();
+    };
+
     document.getElementById("resetColorsBtn").onclick = async () => {
       resetSelections();
       await renderTiles();
     };
   }
+
   else {
     editBar.classList.add("hidden");
     editBar.innerHTML = "";
@@ -149,6 +158,37 @@ export async function renderTiles() {
   window.scrollTo(0, scrollY);
 }
 
+/* ================= ACTIONS ================= */
+
+function selectAllTiles() {
+  state.selected = {};
+  for (const cat of state.categories) {
+    for (const tile of cat.tiles) {
+      state.selected[tile.id] = true;
+    }
+  }
+  save();
+}
+
+function resetSelections() {
+  state.selected = {};
+  state.validated = {};
+  save();
+}
+
+function resetAll() {
+  if (!confirm(t("confirmResetAll"))) return;
+
+  for (const k of Object.keys(imageUrlCache)) {
+    URL.revokeObjectURL(imageUrlCache[k]);
+    delete imageUrlCache[k];
+  }
+
+  localStorage.clear();
+  indexedDB.deleteDatabase("tile_images_db");
+  location.reload();
+}
+
 /* ================= CATÉGORIES ================= */
 
 function openCategoryModal() {
@@ -181,8 +221,6 @@ function createCategoryFromModal() {
   save();
   closeModal();
 }
-
-/* ================= ACTIONS ================= */
 
 function moveCategory(i, d) {
   const a = state.categories;
@@ -220,25 +258,6 @@ function deleteCategory(catId) {
   if (!confirm(t("confirmDeleteCategory"))) return;
   state.categories = state.categories.filter(c => c.id !== catId);
   save();
-}
-
-function resetSelections() {
-  state.selected = {};
-  state.validated = {};
-  save();
-}
-
-function resetAll() {
-  if (!confirm(t("confirmResetAll"))) return;
-
-  for (const k of Object.keys(imageUrlCache)) {
-    URL.revokeObjectURL(imageUrlCache[k]);
-    delete imageUrlCache[k];
-  }
-
-  localStorage.clear();
-  indexedDB.deleteDatabase("tile_images_db");
-  location.reload();
 }
 
 /* ================= MODALE VIGNETTE ================= */
