@@ -4,13 +4,13 @@ export const I18N = {
   fr: {
     /* ===== GLOBAL ===== */
     edit: "créer tes punitions",
-    sou: "Sub",
+    sou: "Sou",
     dom: "DOM",
 
     /* ===== HOME ===== */
     homeTitle: "Accueil",
-    nameSou: "sub",
-    nameDom: "dom",
+    nameSou: "Sub",
+    nameDom: "Dom",
     start: "Commencer",
 
     /* ===== CATEGORIES ===== */
