@@ -1,6 +1,7 @@
 import { state, save } from "./state.js";
 import { renderTiles } from "./tiles.js";
 import { t } from "./i18n.js";
+import { render } from "./router.js";
 
 /* ================= RENDER GAME ================= */
 export function renderGame() {
@@ -47,7 +48,7 @@ export function renderGame() {
     <div id="content"></div>
   `;
 
-  /* ===== LANGUE (CE QUI MANQUAIT) ===== */
+  /* ===== SÉLECTEUR DE LANGUE (GLOBAL) ===== */
   const langSelect = document.getElementById("langSelect");
   if (langSelect) {
     langSelect.value = state.lang;
@@ -55,7 +56,7 @@ export function renderGame() {
     langSelect.onchange = () => {
       state.lang = langSelect.value;
       save();
-      renderGame(); // 🔁 RE-RENDER OBLIGATOIRE
+      render(); // ✅ TOUJOURS PASSER PAR LE ROUTER
     };
   }
 
@@ -70,6 +71,9 @@ function updateModeButtons() {
     btn.classList.toggle("active", btn.dataset.mode === state.mode);
   });
 }
+
+/* ================= FULLSCREEN ================= */
+
 function toggleFullscreen() {
   if (!document.fullscreenElement) {
     document.documentElement.requestFullscreen().catch(() => {});
@@ -85,5 +89,6 @@ function updateFullscreenButton() {
 }
 
 document.addEventListener("fullscreenchange", updateFullscreenButton);
-
-document.getElementById("fullscreenBtn")?.addEventListener("click", toggleFullscreen);
+document
+  .getElementById("fullscreenBtn")
+  ?.addEventListener("click", toggleFullscreen);
