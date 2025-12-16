@@ -219,21 +219,25 @@ main {
 }
 
 /* =====================================================
-   DOM DONE — BLUE STRIKE
+   DIAGONALE DOM — BARRE GRISE TRANSPARENTE
    ===================================================== */
 .tile.done::after {
   content: "";
   position: absolute;
   inset: -15%;
+
   background: linear-gradient(
     135deg,
     transparent 46%,
-    rgba(38,108,204,.95) 48%,
-    rgba(38,108,204,.95) 52%,
+    rgba(180, 180, 180, 0.45) 48%,
+    rgba(180, 180, 180, 0.45) 52%,
     transparent 54%
   );
-  filter: drop-shadow(0 0 14px rgba(38,108,204,.9));
+
   pointer-events: none;
+
+  /* léger flou + douceur */
+  filter: blur(0.3px);
 }
 
 /* =====================================================
