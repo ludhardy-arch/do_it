@@ -9,8 +9,8 @@ export const I18N = {
 
     /* ===== HOME ===== */
     homeTitle: "Accueil",
-    nameSou: "Nom 1",
-    nameDom: "Nom 2",
+    nameSou: "soumis",
+    nameDom: "dom",
     start: "Commencer",
 
     /* ===== CATEGORIES ===== */
@@ -50,8 +50,8 @@ export const I18N = {
 
     /* ===== HOME ===== */
     homeTitle: "Home",
-    nameSou: "Name 1",
-    nameDom: "Name 2",
+    nameSou: "sub",
+    nameDom: "dom",
     start: "Start",
 
     /* ===== CATEGORIES ===== */
