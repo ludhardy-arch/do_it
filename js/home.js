@@ -9,22 +9,13 @@ export function renderHome() {
 
   if (!header || !home || !game) return;
 
-  /* ===== VISIBILITÉ ===== */
   header.classList.add("hidden");
   game.classList.add("hidden");
   home.classList.remove("hidden");
 
-  /* ===== CONTENU ===== */
   home.innerHTML = `
     <div class="card home-card">
       <h2>${t("homeTitle")}</h2>
-
-      <label class="small">${t("language")}</label>
-      <select id="langSelect" class="lang-select">
-        <option value="fr">Français</option>
-        <option value="en">English</option>
-        <option value="de">Deutsch</option>
-      </select>
 
       <input
         id="nameSou"
@@ -44,17 +35,6 @@ export function renderHome() {
     </div>
   `;
 
-  /* ===== LANGUE ===== */
-  const langSelect = document.getElementById("langSelect");
-  langSelect.value = state.lang;
-
-  langSelect.onchange = () => {
-    state.lang = langSelect.value;
-    save();
-    render(); // 🔁 re-render pour appliquer la langue partout
-  };
-
-  /* ===== ACTION ===== */
   document.getElementById("start").onclick = () => {
     const s = document.getElementById("nameSou").value.trim();
     const d = document.getElementById("nameDom").value.trim();
