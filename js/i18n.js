@@ -4,7 +4,7 @@ export const I18N = {
   fr: {
     /* ===== GLOBAL ===== */
     edit: "créer tes punitions",
-    sou: "Sou",
+    sou: "SOU",
     dom: "DOM",
 
     /* ===== HOME ===== */
