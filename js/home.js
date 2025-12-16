@@ -2,6 +2,7 @@ import { state, save } from "./state.js";
 import { render } from "./router.js";
 import { t } from "./i18n.js";
 
+/* ================= RENDER HOME ================= */
 export function renderHome() {
   const header = document.getElementById("header");
   const home   = document.getElementById("home");
@@ -9,23 +10,25 @@ export function renderHome() {
 
   if (!header || !home || !game) return;
 
+  /* ===== VISIBILITÉ ===== */
   header.classList.add("hidden");
   game.classList.add("hidden");
   home.classList.remove("hidden");
 
+  /* ===== CONTENU ===== */
   home.innerHTML = `
-    <div class="card home-card">
+    <div class="card">
       <h2>${t("homeTitle")}</h2>
 
       <input
         id="nameSou"
-        placeholder="${t("nameSou")}"
+        placeholder="${t("sou")}"
         value="${state.names.sou}"
       >
 
       <input
         id="nameDom"
-        placeholder="${t("nameDom")}"
+        placeholder="${t("dom")}"
         value="${state.names.dom}"
       >
 
@@ -35,6 +38,7 @@ export function renderHome() {
     </div>
   `;
 
+  /* ===== ACTION ===== */
   document.getElementById("start").onclick = () => {
     const s = document.getElementById("nameSou").value.trim();
     const d = document.getElementById("nameDom").value.trim();
