@@ -105,31 +105,28 @@ main {
     0 20px 60px rgba(0,0,0,.95);
 }
 
-/* =====================================================
-   GRID — VIGNETTES PLUS PETITES
-   ===================================================== */
+/* =====================
+   GRID RESPONSIVE
+   ===================== */
 
 .grid {
   display: grid;
-  gap: 10px;
-  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 12px;
+  grid-template-columns: repeat(2, 1fr); /* mobile */
 }
 
-
-@media (min-width: 900px) {
+/* 📱 Tablette */
+@media (min-width: 600px) {
   .grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
-.row {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.hidden {
-  display: none;
+/* 🖥️ Desktop */
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 /* =====================================================
