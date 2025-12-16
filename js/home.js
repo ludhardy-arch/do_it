@@ -49,8 +49,9 @@ export function renderHome() {
     state.names.dom = d;
     state.mode = "sou";
     state.screen = "game";
-
     save();
+    
+    document.getElementById("home").innerHTML = ""; // ✅ VIDER L’ACCUEIL
     render();
   };
 }
