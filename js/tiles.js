@@ -23,9 +23,7 @@ export async function renderTiles() {
     editBar.classList.remove("hidden");
     editBar.innerHTML = `
       <div class="row">
-        <button class="btn green-action" id="newCatBtn">
-  ➕ ${t("newCategory")}
-</button>
+        <button class="btn" id="createTile">${t("create")}</button>
         <button class="btn" id="resetAllBtn">${t("resetAll")}</button>
       </div>
     `;
