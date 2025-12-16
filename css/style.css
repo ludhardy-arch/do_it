@@ -338,27 +338,4 @@ main {
   min-width: 44px;
   text-align: center;
 }
-/* ===============================
-   BOUTONS ACTION POSITIVE (VERT)
-   =============================== */
-
-.btn.add,
-.btn.green-action {
-  background: rgba(57, 240, 0, 0.25); /* #39F000 transparent */
-  border: 1px solid #39F000;
-  color: #eaffea;
-
-  box-shadow:
-    0 0 12px rgba(57, 240, 0, 0.4),
-    inset 0 0 0 1px rgba(255,255,255,0.08);
-
-  transition: background 0.15s ease, box-shadow 0.15s ease;
-}
-
-.btn.add:hover,
-.btn.green-action:hover {
-  background: rgba(57, 240, 0, 0.4);
-  box-shadow:
-    0 0 18px rgba(57, 240, 0, 0.7),
-    inset 0 0 0 1px rgba(255,255,255,0.12);
-}
+/* 
