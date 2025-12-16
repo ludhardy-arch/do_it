@@ -16,8 +16,15 @@ export function renderHome() {
 
   /* ===== CONTENU ===== */
   home.innerHTML = `
-    <div class="card">
+    <div class="card home-card">
       <h2>${t("homeTitle")}</h2>
+
+      <label class="small">${t("language")}</label>
+      <select id="langSelect" class="lang-select">
+        <option value="fr">Français</option>
+        <option value="en">English</option>
+        <option value="de">Deutsch</option>
+      </select>
 
       <input
         id="nameSou"
@@ -36,6 +43,16 @@ export function renderHome() {
       </button>
     </div>
   `;
+
+  /* ===== LANGUE ===== */
+  const langSelect = document.getElementById("langSelect");
+  langSelect.value = state.lang;
+
+  langSelect.onchange = () => {
+    state.lang = langSelect.value;
+    save();
+    render(); // 🔁 re-render pour appliquer la langue partout
+  };
 
   /* ===== ACTION ===== */
   document.getElementById("start").onclick = () => {
