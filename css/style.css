@@ -51,28 +51,29 @@ header {
   text-align: center;
 
   font-size: 38px;
-  font-weight: 800;
-  letter-spacing: 6px;
+  font-weight: 900;
+  letter-spacing: 7px;
   text-transform: uppercase;
 
-  color: #e9e5ff;
-
+  /* texte néon violet clair */
   background: linear-gradient(
     180deg,
     #ffffff 0%,
-    #d9ccff 40%,
-    #8b6bff 70%,
-    #4a2ed8 100%
+    #efe9ff 25%,
+    #cbb8ff 55%,
+    #9a7cff 80%,
+    #7a5cff 100%
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
-  /* relief 3D + néon */
+  /* relief + glow néon */
   text-shadow:
-    0 2px 4px rgba(0,0,0,.8),
-    0 6px 12px rgba(0,0,0,.9),
-    0 0 18px rgba(138,107,255,.6),
-    0 0 36px rgba(138,107,255,.35);
+    0 2px 3px rgba(0,0,0,.6),
+    0 6px 10px rgba(0,0,0,.7),
+    0 0 18px rgba(170,130,255,.85),
+    0 0 36px rgba(170,130,255,.55),
+    0 0 60px rgba(170,130,255,.35);
 }
 
 #appTitle::after {
