@@ -50,17 +50,21 @@ header {
   margin: 0 0 14px;
   text-align: center;
 
-  font-size: 34px;
+  font-size: 36px;
   font-weight: 900;
-  letter-spacing: 6px;
+  letter-spacing: 7px;
   text-transform: uppercase;
 
-  color: var(--violet);
+  color: #c7b7ff;
 
+  /* effet 3D */
   text-shadow:
-    0 0 8px rgba(123,77,255,.6),
-    0 0 20px rgba(123,77,255,.35),
-    0 0 40px rgba(123,77,255,.2);
+    0 1px 0 #5a3cff,
+    0 2px 0 #4a2fe0,
+    0 3px 0 #3a23b8,
+    0 6px 10px rgba(0,0,0,.8),
+    0 0 20px rgba(123,77,255,.45),
+    0 0 40px rgba(123,77,255,.25);
 }
 
 #appTitle::after {
