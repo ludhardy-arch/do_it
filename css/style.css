@@ -47,33 +47,34 @@ header {
 
 /* ===== TITRE ===== */
 #appTitle {
-  margin: 0 0 16px;
+  margin: 0 0 18px;
   text-align: center;
 
-  font-size: 38px;
+  font-size: 40px;
   font-weight: 900;
-  letter-spacing: 7px;
+  letter-spacing: 8px;
   text-transform: uppercase;
 
-  /* texte néon violet clair */
+  /* violet néon pur */
   background: linear-gradient(
     180deg,
     #ffffff 0%,
-    #efe9ff 25%,
-    #cbb8ff 55%,
-    #9a7cff 80%,
-    #7a5cff 100%
+    #f0e9ff 18%,
+    #d4c1ff 40%,
+    #b08cff 65%,
+    #8b5cff 85%,
+    #6a3cff 100%
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
-  /* relief + glow néon */
+  /* 3D + glow violet fort */
   text-shadow:
-    0 2px 3px rgba(0,0,0,.6),
-    0 6px 10px rgba(0,0,0,.7),
-    0 0 18px rgba(170,130,255,.85),
-    0 0 36px rgba(170,130,255,.55),
-    0 0 60px rgba(170,130,255,.35);
+    0 2px 2px rgba(0,0,0,.55),
+    0 6px 10px rgba(0,0,0,.75),
+    0 0 20px rgba(165,110,255,.95),
+    0 0 45px rgba(165,110,255,.75),
+    0 0 80px rgba(165,110,255,.55);
 }
 
 #appTitle::after {
