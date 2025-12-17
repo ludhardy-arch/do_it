@@ -1,27 +1,100 @@
+/* =====================================================
+   PALETTE — DONJON PREMIUM
+   ===================================================== */
 :root {
   --bg-main: #120608;
   --bg-panel: #1a0a0d;
   --bg-card: #1f0e12;
 
+  --wood-dark: #2a1812;
+  --wood-line: #3a211a;
+
+  --chrome: #bfc3cc;
+  --chrome-dark: #6f7480;
+
   --text-main: #f2e9ec;
   --text-muted: #b89aa2;
+
+  --red-accent: #8f1d2c;
 
   --red: #c33;
   --green: #2a4;
   --blue: #26c;
 }
 
-/* ===== BASE ===== */
-* { box-sizing: border-box; }
+/* =====================================================
+   RESET / BASE
+   ===================================================== */
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
   font-family: system-ui, -apple-system, Segoe UI, sans-serif;
-  background: radial-gradient(circle at top, #2a0e14, #090304 70%);
+  background:
+    radial-gradient(circle at top, #2a0e14, #090304 70%);
   color: var(--text-main);
 }
 
-.hidden { display: none; }
+/* =====================================================
+   HEADER
+   ===================================================== */
+header {
+  padding: 14px;
+  background: linear-gradient(180deg, #1b0b0f, #0c0406);
+  border-bottom: 1px solid var(--red-accent);
+}
+
+h1 {
+  margin: 0 0 10px;
+  font-size: 18px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* =====================================================
+   BOUTONS
+   ===================================================== */
+.btn {
+  background: linear-gradient(180deg, #2a1216, #140608);
+  color: var(--text-main);
+  border: 1px solid var(--chrome-dark);
+  border-radius: 10px;
+  padding: 8px 16px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+
+.btn:hover {
+  border-color: var(--chrome);
+  box-shadow: 0 0 10px rgba(255,255,255,.15);
+}
+
+.btn.active {
+  border-color: var(--red-accent);
+  box-shadow: 0 0 12px rgba(143,29,44,.6);
+}
+
+/* =====================================================
+   LAYOUT
+   ===================================================== */
+main {
+  padding: 16px;
+  display: grid;
+  gap: 18px;
+}
+
+.card {
+  background: linear-gradient(180deg, #221014, #120608);
+  border: 1px solid var(--wood-line);
+  border-radius: 18px;
+  padding: 14px;
+  box-shadow: 0 12px 30px rgba(0,0,0,.8);
+}
 
 .row {
   display: flex;
@@ -29,103 +102,100 @@ body {
   flex-wrap: wrap;
 }
 
-main {
-  padding: 16px;
-  display: grid;
-  gap: 18px;
+.hidden {
+  display: none;
 }
 
-/* ===== HEADER ===== */
-header {
-  padding: 14px;
-  background: linear-gradient(180deg, #1b0b0f, #0c0406);
-  border-bottom: 1px solid rgba(255,255,255,.1);
-}
-
-h1 {
-  margin: 0 0 10px;
-  text-align: center;
-  font-size: 22px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-}
-
-/* ===== BOUTONS ===== */
-.btn {
-  background: linear-gradient(180deg, #2a1216, #140608);
-  color: var(--text-main);
-  border: 1px solid rgba(255,255,255,.15);
-  border-radius: 10px;
-  padding: 8px 14px;
-  cursor: pointer;
-}
-
-.btn.active {
-  box-shadow: 0 0 10px rgba(255,255,255,.25);
-}
-
-/* ===== CARD (CATÉGORIE) ===== */
-.card {
-  position: relative;
-  background: linear-gradient(180deg, #221014, #120608);
-  border-radius: 18px;
-  padding: 14px;
-  z-index: 1;
-}
-
-/* 🔥 HALO CATÉGORIE (IMPOSSIBLE À ÉCRASER) */
-.card::before {
-  content: "";
-  position: absolute;
-  inset: -20px;
-  border-radius: 28px;
-  background: var(--cat-halo, transparent);
-  filter: blur(28px);
-  opacity: 0.85;
-  z-index: -1;
-  pointer-events: none;
-}
-
-/* ===== GRID ===== */
+/* =====================================================
+   GRID
+   ===================================================== */
 .grid {
   display: grid;
-  gap: 12px;
+  gap: 14px;
   grid-template-columns: repeat(2, 1fr);
 }
 
-@media (min-width: 700px) {
-  .grid { grid-template-columns: repeat(3, 1fr); }
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
-@media (min-width: 1000px) {
-  .grid { grid-template-columns: repeat(4, 1fr); }
-}
-
-/* ===== TILES ===== */
+/* =====================================================
+   VIGNETTES
+   ===================================================== */
 .tile {
-  aspect-ratio: 1/1;
-  border-radius: 14px;
-  padding: 10px;
-  cursor: pointer;
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: 16px;
+  padding: 12px;
   display: grid;
   place-items: center;
+  cursor: pointer;
   background: linear-gradient(145deg, #2a1418, #140709);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.03),
+    inset 0 0 25px rgba(0,0,0,.9);
 }
 
-/* COULEURS FONCTIONNELLES */
-.tile.red { border: 2px solid var(--red); }
+/* COULEURS LOGIQUES */
+.tile.red   { border: 2px solid var(--red); }
 .tile.green { border: 2px solid var(--green); }
-.tile.blue { border: 2px solid var(--blue); }
+.tile.blue  { border: 2px solid var(--blue); }
 
+/* TEXTE */
+.tile > div:not(.row) {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  text-align: center;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  background: linear-gradient(180deg, #1a0a0d, #0a0406);
+  border-radius: 12px;
+}
+
+/* IMAGE */
 .tile img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 12px;
 }
 
-.tile > div {
-  text-align: center;
-  font-weight: 700;
-  letter-spacing: 1px;
+/* =====================================================
+   DIAGONALE DOM
+   ===================================================== */
+.tile.done::after {
+  content: "";
+  position: absolute;
+  inset: -12%;
+  background: linear-gradient(
+    135deg,
+    transparent 46%,
+    rgba(180,180,180,.6) 48%,
+    rgba(180,180,180,.6) 52%,
+    transparent 54%
+  );
+  pointer-events: none;
+}
+
+/* =====================================================
+   MODALE
+   ===================================================== */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(10,4,6,.88);
+  display: grid;
+  place-items: center;
+  z-index: 999;
+}
+
+.modal .card {
+  width: min(92vw, 420px);
 }
