@@ -47,7 +47,8 @@ header {
 
 /* ===== TITRE ===== */
 #appTitle {
-  margin: 0 0 20px;
+  position: relative;
+  margin: 0 0 22px;
   text-align: center;
 
   font-size: 42px;
@@ -55,7 +56,7 @@ header {
   letter-spacing: 10px;
   text-transform: uppercase;
 
-  /* VIOLET NÉON BRUT */
+  /* TEXTE VIOLET (inchangé) */
   background: linear-gradient(
     180deg,
     #ffffff 0%,
@@ -69,17 +70,16 @@ header {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
-  /* OMBRES + GLOW VIOLET TRÈS FORT */
+  /* CONTRASTE + GLOW */
   text-shadow:
-    0 2px 2px rgba(0,0,0,.6),
-    0 6px 12px rgba(0,0,0,.8),
-    0 0 25px rgba(140,60,255,1),
-    0 0 50px rgba(140,60,255,.9),
-    0 0 90px rgba(140,60,255,.75),
-    0 0 140px rgba(140,60,255,.6);
+    /* contour sombre (lisibilité) */
+    0 0 2px rgba(0,0,0,.9),
+    0 0 4px rgba(0,0,0,.9),
 
-  /* léger relief */
-  transform: translateZ(0);
+    /* glow violet */
+    0 0 25px rgba(140,60,255,1),
+    0 0 55px rgba(140,60,255,.9),
+    0 0 100px rgba(140,60,255,.75);
 }
 
 #appTitle::after {
