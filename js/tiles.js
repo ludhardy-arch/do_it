@@ -2,15 +2,29 @@ import { saveImage, getImage, deleteImage } from "./imageStore.js";
 import { state, save, uid } from "./state.js";
 import { t } from "./i18n.js";
 
+/* ================= COULEURS CATÉGORIES ================= */
+
+const CATEGORY_COLORS = [
+  "rgba(120, 90, 140, 0.25)",
+  "rgba(90, 120, 110, 0.25)",
+  "rgba(140, 110, 90, 0.25)",
+  "rgba(90, 100, 130, 0.25)",
+  "rgba(130, 90, 100, 0.25)",
+  "rgba(110, 110, 110, 0.25)"
+];
+
 /* ================= MODAL STATE ================= */
+
 let currentCatId = null;
 let tileType = "text";
 let imageData = null;
 
 /* ================= IMAGE CACHE ================= */
+
 const imageUrlCache = Object.create(null);
 
 /* ================= RENDER ================= */
+
 export async function renderTiles() {
   const editBar = document.getElementById("editBar");
   const content = document.getElementById("content");
@@ -19,6 +33,7 @@ export async function renderTiles() {
   const scrollY = window.scrollY;
 
   /* ===== BARRE HAUTE ===== */
+
   if (state.mode === "edit") {
     editBar.classList.remove("hidden");
     editBar.innerHTML = `
@@ -59,6 +74,7 @@ export async function renderTiles() {
   content.innerHTML = "";
 
   /* ===== CATEGORIES ===== */
+
   for (let ci = 0; ci < state.categories.length; ci++) {
     const cat = state.categories[ci];
 
@@ -71,6 +87,14 @@ export async function renderTiles() {
 
     const card = document.createElement("div");
     card.className = "card";
+
+    /* 🌫️ HALO DOUX DE CATÉGORIE */
+    if (cat.color) {
+      card.style.boxShadow = `
+        0 0 30px ${cat.color},
+        inset 0 0 40px rgba(0,0,0,0.6)
+      `;
+    }
 
     const head = document.createElement("div");
     head.className = "row";
@@ -132,6 +156,7 @@ export async function renderTiles() {
       };
 
       /* ===== CONTENU ===== */
+
       if (tile.type === "image" && tile.imageId) {
         const img = document.createElement("img");
 
@@ -140,7 +165,7 @@ export async function renderTiles() {
           if (blob) imageUrlCache[tile.imageId] = URL.createObjectURL(blob);
         }
 
-        img.src = imageUrlCache[tile.imageId] || "";
+        img.src = imageUrlCache[tile.imageId];
         d.appendChild(img);
       } else {
         const txt = document.createElement("div");
@@ -210,7 +235,6 @@ function openCategoryModal() {
     createCategoryFromModal();
     await renderTiles();
   };
-
   document.getElementById("cancelCatBtn").onclick = closeModal;
 }
 
@@ -218,7 +242,14 @@ function createCategoryFromModal() {
   const input = document.getElementById("catInput");
   const name = input.value.trim();
   if (!name) return alert(t("missingCategoryName"));
-  state.categories.push({ id: uid(), name, tiles: [] });
+
+  state.categories.push({
+    id: uid(),
+    name,
+    color: CATEGORY_COLORS[state.categories.length % CATEGORY_COLORS.length],
+    tiles: []
+  });
+
   save();
   closeModal();
 }
