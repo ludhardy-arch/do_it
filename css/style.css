@@ -2,23 +2,28 @@
    PALETTE — NEON DUNGEON MODERNE
    ===================================================== */
 :root {
-  --bg-main: #0b0507;
-  --bg-panel: #12070a;
-  --bg-card: #160a0e;
+  --bg-main: #0b0b12;
+  --bg-panel: #11111c;
+  --bg-card: #141424;
 
-  --neon-red: #ff3b5c;
-  --neon-purple: #a855f7;
-  --neon-cyan: #22d3ee;
-  --neon-green: #4ade80;
+  --neon-red: #ff3b6a;
+  --neon-purple: #b86cff;
+  --neon-cyan: #3be4ff;
+  --neon-green: #3bff9a;
 
-  --text-main: #f5eef2;
-  --text-muted: #bfa6af;
+  --text-main: #f5f6ff;
+  --text-muted: #9aa0c2;
 
-  --border-soft: rgba(255,255,255,.06);
+  --border-soft: rgba(255,255,255,.08);
+
+  /* LOGIQUE EXISTANTE — NE PAS TOUCHER */
+  --red: #c33;
+  --green: #2a4;
+  --blue: #26c;
 }
 
 /* =====================================================
-   RESET
+   BASE
    ===================================================== */
 * {
   box-sizing: border-box;
@@ -28,7 +33,7 @@ body {
   margin: 0;
   font-family: system-ui, -apple-system, Segoe UI, sans-serif;
   background:
-    radial-gradient(circle at top, #1a0b12, #050203 70%);
+    radial-gradient(circle at top, #1a1a33, #07070c 70%);
   color: var(--text-main);
 }
 
@@ -36,74 +41,68 @@ body {
    HEADER
    ===================================================== */
 header {
-  padding: 16px;
-  background: linear-gradient(180deg, #12060a, #060203);
-  border-bottom: 1px solid rgba(255,255,255,.05);
+  padding: 14px;
+  background: linear-gradient(180deg, #0f0f1f, #07070c);
+  border-bottom: 1px solid rgba(255,255,255,.08);
 }
 
 h1 {
-  margin: 0 0 12px;
-  text-align: center;
-  font-size: 22px;
+  margin: 0 0 10px;
+  font-size: 20px;
   letter-spacing: 4px;
   text-transform: uppercase;
-  color: var(--text-main);
-  text-shadow:
-    0 0 12px rgba(255,59,92,.35),
-    0 0 28px rgba(168,85,247,.25);
+  text-align: center;
+  color: var(--neon-purple);
+  text-shadow: 0 0 12px rgba(184,108,255,.6);
 }
 
 /* =====================================================
    BOUTONS
    ===================================================== */
 .btn {
-  background: linear-gradient(180deg, #1c0d13, #0d0508);
+  background: linear-gradient(180deg, #18182e, #0f0f1f);
   color: var(--text-main);
   border: 1px solid var(--border-soft);
   border-radius: 12px;
-  padding: 8px 18px;
+  padding: 8px 16px;
   font-weight: 700;
   letter-spacing: 1px;
   cursor: pointer;
-  transition: all .2s ease;
+  transition: all .15s ease;
 }
 
 .btn:hover {
-  border-color: rgba(255,255,255,.2);
-  box-shadow:
-    0 0 10px rgba(168,85,247,.25),
-    inset 0 0 0 1px rgba(255,255,255,.04);
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 14px rgba(59,228,255,.35);
 }
 
 .btn.active {
-  border-color: var(--neon-red);
-  box-shadow:
-    0 0 14px rgba(255,59,92,.6),
-    inset 0 0 0 1px rgba(255,59,92,.4);
+  border-color: var(--neon-purple);
+  box-shadow: 0 0 16px rgba(184,108,255,.6);
 }
 
 /* =====================================================
    LAYOUT
    ===================================================== */
 main {
-  padding: 18px;
+  padding: 16px;
   display: grid;
-  gap: 22px;
+  gap: 18px;
 }
 
 .card {
-  background: linear-gradient(180deg, #180b11, #0c0508);
-  border-radius: 20px;
+  background: linear-gradient(180deg, #16162b, #0f0f1f);
+  border: 1px solid var(--border-soft);
+  border-radius: 18px;
   padding: 16px;
-  border: 1px solid rgba(255,255,255,.04);
   box-shadow:
-    0 20px 40px rgba(0,0,0,.85),
+    0 10px 30px rgba(0,0,0,.8),
     inset 0 0 0 1px rgba(255,255,255,.02);
 }
 
 .row {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   flex-wrap: wrap;
 }
 
@@ -116,15 +115,14 @@ main {
    ===================================================== */
 .grid {
   display: grid;
-  gap: 16px;
+  gap: 14px;
   grid-template-columns: repeat(2, 1fr);
 }
 
-@media (min-width: 700px) {
-  .grid { grid-template-columns: repeat(3, 1fr); }
-}
-@media (min-width: 1100px) {
-  .grid { grid-template-columns: repeat(4, 1fr); }
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 /* =====================================================
@@ -133,51 +131,59 @@ main {
 .tile {
   position: relative;
   aspect-ratio: 1 / 1;
-  border-radius: 18px;
-  padding: 14px;
+  border-radius: 16px;
+  padding: 12px;
   display: grid;
   place-items: center;
   cursor: pointer;
+
   background:
-    radial-gradient(circle at top, rgba(255,255,255,.04), transparent 60%),
-    linear-gradient(160deg, #1e0f15, #0b0508);
+    linear-gradient(145deg, #1b1b33, #0f0f1f);
+
   box-shadow:
     inset 0 0 0 1px rgba(255,255,255,.04),
-    inset 0 0 35px rgba(0,0,0,.9);
+    inset 0 0 30px rgba(0,0,0,.9);
+
   transition: transform .15s ease, box-shadow .15s ease;
 }
 
 .tile:hover {
   transform: translateY(-2px);
   box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,.08),
-    0 0 20px rgba(168,85,247,.25);
+    0 0 18px rgba(184,108,255,.25),
+    inset 0 0 0 1px rgba(255,255,255,.06);
 }
 
-/* COULEURS LOGIQUES (INCHANGÉES) */
-.tile.red   { border: 2px solid #ff3b5c; }
-.tile.green { border: 2px solid #4ade80; }
-.tile.blue  { border: 2px solid #38bdf8; }
+/* LOGIQUE COULEURS EXISTANTE */
+.tile.red   { border: 2px solid var(--red); }
+.tile.green { border: 2px solid var(--green); }
+.tile.blue  { border: 2px solid var(--blue); }
 
 /* =====================================================
-   TEXTE DANS VIGNETTE
+   TEXTE VIGNETTES
    ===================================================== */
 .tile > div:not(.row) {
   width: 100%;
   height: 100%;
+  padding: 16px;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 16px;
+
   text-align: center;
   font-weight: 800;
   letter-spacing: 1.4px;
   text-transform: uppercase;
+
   color: var(--text-main);
-  background:
-    linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.15));
-  border-radius: 14px;
-  text-shadow: 0 2px 10px rgba(0,0,0,.9);
+
+  background: linear-gradient(180deg, #141428, #0b0b15);
+  border-radius: 12px;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.06),
+    inset 0 0 20px rgba(0,0,0,.9);
 }
 
 /* =====================================================
@@ -187,22 +193,21 @@ main {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 14px;
-  filter: contrast(1.05) saturate(.95);
+  border-radius: 12px;
 }
 
 /* =====================================================
-   BARRE DIAGONALE DOM (SOBRE)
+   DIAGONALE DOM (GRISE TRANSPARENTE)
    ===================================================== */
 .tile.done::after {
   content: "";
   position: absolute;
-  inset: -10%;
+  inset: -12%;
   background: linear-gradient(
     135deg,
     transparent 46%,
-    rgba(180,180,180,.5) 48%,
-    rgba(180,180,180,.5) 52%,
+    rgba(200,200,200,.35) 48%,
+    rgba(200,200,200,.35) 52%,
     transparent 54%
   );
   pointer-events: none;
@@ -214,7 +219,7 @@ main {
 .modal {
   position: fixed;
   inset: 0;
-  background: rgba(6,2,4,.9);
+  background: rgba(6,6,12,.85);
   display: grid;
   place-items: center;
   z-index: 999;
