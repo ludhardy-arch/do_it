@@ -1,29 +1,29 @@
 /* =====================================================
-   PALETTE — DONJON PREMIUM
+   PALETTE — NEON DUNGEON MODERNE
    ===================================================== */
 :root {
-  --bg-main: #120608;
-  --bg-panel: #1a0a0d;
-  --bg-card: #1f0e12;
+  --bg-main: #0b0b12;
+  --bg-panel: #11111c;
+  --bg-card: #141424;
 
-  --wood-dark: #2a1812;
-  --wood-line: #3a211a;
+  --neon-red: #ff3b6a;
+  --neon-purple: #b86cff;
+  --neon-cyan: #3be4ff;
+  --neon-green: #3bff9a;
 
-  --chrome: #bfc3cc;
-  --chrome-dark: #6f7480;
+  --text-main: #f5f6ff;
+  --text-muted: #9aa0c2;
 
-  --text-main: #f2e9ec;
-  --text-muted: #b89aa2;
+  --border-soft: rgba(255,255,255,.08);
 
-  --red-accent: #8f1d2c;
-
+  /* LOGIQUE EXISTANTE — NE PAS TOUCHER */
   --red: #c33;
   --green: #2a4;
   --blue: #26c;
 }
 
 /* =====================================================
-   RESET / BASE
+   BASE
    ===================================================== */
 * {
   box-sizing: border-box;
@@ -33,7 +33,7 @@ body {
   margin: 0;
   font-family: system-ui, -apple-system, Segoe UI, sans-serif;
   background:
-    radial-gradient(circle at top, #2a0e14, #090304 70%);
+    radial-gradient(circle at top, #1a1a33, #07070c 70%);
   color: var(--text-main);
 }
 
@@ -42,26 +42,28 @@ body {
    ===================================================== */
 header {
   padding: 14px;
-  background: linear-gradient(180deg, #1b0b0f, #0c0406);
-  border-bottom: 1px solid var(--red-accent);
+  background: linear-gradient(180deg, #0f0f1f, #07070c);
+  border-bottom: 1px solid rgba(255,255,255,.08);
 }
 
 h1 {
   margin: 0 0 10px;
-  font-size: 18px;
-  letter-spacing: 3px;
+  font-size: 20px;
+  letter-spacing: 4px;
   text-transform: uppercase;
   text-align: center;
+  color: var(--neon-purple);
+  text-shadow: 0 0 12px rgba(184,108,255,.6);
 }
 
 /* =====================================================
    BOUTONS
    ===================================================== */
 .btn {
-  background: linear-gradient(180deg, #2a1216, #140608);
+  background: linear-gradient(180deg, #18182e, #0f0f1f);
   color: var(--text-main);
-  border: 1px solid var(--chrome-dark);
-  border-radius: 10px;
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
   padding: 8px 16px;
   font-weight: 700;
   letter-spacing: 1px;
@@ -70,13 +72,13 @@ h1 {
 }
 
 .btn:hover {
-  border-color: var(--chrome);
-  box-shadow: 0 0 10px rgba(255,255,255,.15);
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 14px rgba(59,228,255,.35);
 }
 
 .btn.active {
-  border-color: var(--red-accent);
-  box-shadow: 0 0 12px rgba(143,29,44,.6);
+  border-color: var(--neon-purple);
+  box-shadow: 0 0 16px rgba(184,108,255,.6);
 }
 
 /* =====================================================
@@ -89,11 +91,13 @@ main {
 }
 
 .card {
-  background: linear-gradient(180deg, #221014, #120608);
-  border: 1px solid var(--wood-line);
+  background: linear-gradient(180deg, #16162b, #0f0f1f);
+  border: 1px solid var(--border-soft);
   border-radius: 18px;
-  padding: 14px;
-  box-shadow: 0 12px 30px rgba(0,0,0,.8);
+  padding: 16px;
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.8),
+    inset 0 0 0 1px rgba(255,255,255,.02);
 }
 
 .row {
@@ -132,34 +136,59 @@ main {
   display: grid;
   place-items: center;
   cursor: pointer;
-  background: linear-gradient(145deg, #2a1418, #140709);
+
+  background:
+    linear-gradient(145deg, #1b1b33, #0f0f1f);
+
   box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,.03),
-    inset 0 0 25px rgba(0,0,0,.9);
+    inset 0 0 0 1px rgba(255,255,255,.04),
+    inset 0 0 30px rgba(0,0,0,.9);
+
+  transition: transform .15s ease, box-shadow .15s ease;
 }
 
-/* COULEURS LOGIQUES */
+.tile:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 18px rgba(184,108,255,.25),
+    inset 0 0 0 1px rgba(255,255,255,.06);
+}
+
+/* LOGIQUE COULEURS EXISTANTE */
 .tile.red   { border: 2px solid var(--red); }
 .tile.green { border: 2px solid var(--green); }
 .tile.blue  { border: 2px solid var(--blue); }
 
-/* TEXTE */
+/* =====================================================
+   TEXTE VIGNETTES
+   ===================================================== */
 .tile > div:not(.row) {
   width: 100%;
   height: 100%;
+  padding: 16px;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 16px;
+
   text-align: center;
   font-weight: 800;
-  letter-spacing: 1.5px;
+  letter-spacing: 1.4px;
   text-transform: uppercase;
-  background: linear-gradient(180deg, #1a0a0d, #0a0406);
+
+  color: var(--text-main);
+
+  background: linear-gradient(180deg, #141428, #0b0b15);
   border-radius: 12px;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.06),
+    inset 0 0 20px rgba(0,0,0,.9);
 }
 
-/* IMAGE */
+/* =====================================================
+   IMAGE
+   ===================================================== */
 .tile img {
   width: 100%;
   height: 100%;
@@ -168,7 +197,7 @@ main {
 }
 
 /* =====================================================
-   DIAGONALE DOM
+   DIAGONALE DOM (GRISE TRANSPARENTE)
    ===================================================== */
 .tile.done::after {
   content: "";
@@ -177,8 +206,8 @@ main {
   background: linear-gradient(
     135deg,
     transparent 46%,
-    rgba(180,180,180,.6) 48%,
-    rgba(180,180,180,.6) 52%,
+    rgba(200,200,200,.35) 48%,
+    rgba(200,200,200,.35) 52%,
     transparent 54%
   );
   pointer-events: none;
@@ -190,7 +219,7 @@ main {
 .modal {
   position: fixed;
   inset: 0;
-  background: rgba(10,4,6,.88);
+  background: rgba(6,6,12,.85);
   display: grid;
   place-items: center;
   z-index: 999;
