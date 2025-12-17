@@ -1,5 +1,5 @@
 /* =====================================================
-   PALETTE — VIOLET NEON MODERNE
+   PALETTE — VIOLET NÉON MODERNE
    ===================================================== */
 :root {
   --bg-main: #0b0612;
@@ -49,7 +49,7 @@ header {
   letter-spacing: 4px;
   font-weight: 900;
   color: var(--violet);
-  text-shadow: 0 0 12px var(--violet-glow);
+  text-shadow: 0 0 14px var(--violet-glow);
 }
 
 /* =====================================================
@@ -121,14 +121,17 @@ main {
 }
 
 /* =====================================================
-   VIGNETTES — FIXÉES / RÉGULIÈRES
+   VIGNETTES — ISOLÉES / RÉGULIÈRES
    ===================================================== */
 .tile {
+  position: relative;          /* 🔒 ancrage */
+  isolation: isolate;          /* 🔒 empilement local */
   aspect-ratio: 1 / 1;
+  overflow: hidden;
+
   border-radius: 16px;
   padding: 10px;
   cursor: pointer;
-  overflow: hidden;
 
   display: grid;
   place-items: center;
@@ -139,13 +142,13 @@ main {
     inset 0 0 25px rgba(0,0,0,.85);
 }
 
-/* --- COULEURS FONCTIONNELLES (INCHANGÉES) --- */
+/* --- COULEURS FONCTIONNELLES (INTOUCHÉES) --- */
 .tile.red   { border: 2px solid var(--red); }
 .tile.green { border: 2px solid var(--green); }
 .tile.blue  { border: 2px solid var(--blue); }
 
 /* =====================================================
-   TEXTE DANS VIGNETTE — PROPRE / LISIBLE
+   TEXTE DANS VIGNETTE
    ===================================================== */
 .tile > div:not(.row) {
   width: 100%;
@@ -186,24 +189,33 @@ main {
   object-fit: cover;
   border-radius: 12px;
 }
+
 /* =====================================================
-   VALIDATION DOM — BARRE DIAGONALE PROPRE
+   BARRE DIAGONALE — DOM (FIX DÉFINITIF)
    ===================================================== */
 .tile.done::after {
   content: "";
   position: absolute;
   inset: 0;
+  z-index: 1;
 
   background: linear-gradient(
     135deg,
-    transparent 47%,
-    rgba(180, 180, 180, 0.35) 49%,
-    rgba(180, 180, 180, 0.35) 51%,
-    transparent 53%
+    transparent 48%,
+    rgba(200,200,200,0.35) 49%,
+    rgba(200,200,200,0.35) 51%,
+    transparent 52%
   );
 
   pointer-events: none;
 }
+
+/* CONTENU AU-DESSUS DE LA BARRE */
+.tile > * {
+  position: relative;
+  z-index: 2;
+}
+
 /* =====================================================
    MODALE
    ===================================================== */
