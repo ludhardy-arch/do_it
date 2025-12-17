@@ -196,15 +196,14 @@ main {
 
   background: linear-gradient(
     135deg,
-    transparent 48%,
-    rgba(200, 200, 200, 0.35) 49%,
-    rgba(200, 200, 200, 0.35) 51%,
-    transparent 52%
+    transparent 47%,
+    rgba(180, 180, 180, 0.35) 49%,
+    rgba(180, 180, 180, 0.35) 51%,
+    transparent 53%
   );
 
   pointer-events: none;
 }
-
 /* =====================================================
    MODALE
    ===================================================== */
