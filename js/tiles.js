@@ -2,8 +2,7 @@ import { saveImage, getImage, deleteImage } from "./imageStore.js";
 import { state, save, uid } from "./state.js";
 import { t } from "./i18n.js";
 
-/* ================= COULEURS CATÉGORIES ================= */
-
+/* ================= COULEURS CATÉGORIES (DOUCES) ================= */
 const CATEGORY_COLORS = [
   "rgba(120, 90, 140, 0.25)",
   "rgba(90, 120, 110, 0.25)",
@@ -14,17 +13,14 @@ const CATEGORY_COLORS = [
 ];
 
 /* ================= MODAL STATE ================= */
-
 let currentCatId = null;
 let tileType = "text";
 let imageData = null;
 
 /* ================= IMAGE CACHE ================= */
-
 const imageUrlCache = Object.create(null);
 
 /* ================= RENDER ================= */
-
 export async function renderTiles() {
   const editBar = document.getElementById("editBar");
   const content = document.getElementById("content");
@@ -33,7 +29,6 @@ export async function renderTiles() {
   const scrollY = window.scrollY;
 
   /* ===== BARRE HAUTE ===== */
-
   if (state.mode === "edit") {
     editBar.classList.remove("hidden");
     editBar.innerHTML = `
@@ -45,7 +40,6 @@ export async function renderTiles() {
     document.getElementById("newCatBtn").onclick = openCategoryModal;
     document.getElementById("resetAllBtn").onclick = resetAll;
   }
-
   else if (state.mode === "sou") {
     editBar.classList.remove("hidden");
     editBar.innerHTML = `
@@ -54,18 +48,15 @@ export async function renderTiles() {
         <button class="btn" id="resetColorsBtn">${t("resetSelection")}</button>
       </div>
     `;
-
-    document.getElementById("selectAllBtn").onclick = async () => {
+    document.getElementById("selectAllBtn").onclick = () => {
       selectAllTiles();
-      await renderTiles();
+      renderTiles();
     };
-
-    document.getElementById("resetColorsBtn").onclick = async () => {
+    document.getElementById("resetColorsBtn").onclick = () => {
       resetSelections();
-      await renderTiles();
+      renderTiles();
     };
   }
-
   else {
     editBar.classList.add("hidden");
     editBar.innerHTML = "";
@@ -74,9 +65,14 @@ export async function renderTiles() {
   content.innerHTML = "";
 
   /* ===== CATEGORIES ===== */
-
   for (let ci = 0; ci < state.categories.length; ci++) {
     const cat = state.categories[ci];
+
+    /* 🩸 ASSIGNATION COULEUR (anciens contenus inclus) */
+    if (!cat.color) {
+      cat.color = CATEGORY_COLORS[ci % CATEGORY_COLORS.length];
+      save();
+    }
 
     const tiles =
       state.mode === "dom"
@@ -88,13 +84,11 @@ export async function renderTiles() {
     const card = document.createElement("div");
     card.className = "card";
 
-    /* 🌫️ HALO DOUX DE CATÉGORIE */
-    if (cat.color) {
-      card.style.boxShadow = `
-        0 0 30px ${cat.color},
-        inset 0 0 40px rgba(0,0,0,0.6)
-      `;
-    }
+    /* 🩸 HALO DE CATÉGORIE */
+    card.style.boxShadow = `
+      0 0 30px ${cat.color},
+      inset 0 0 40px rgba(0,0,0,0.6)
+    `;
 
     const head = document.createElement("div");
     head.className = "row";
@@ -102,12 +96,12 @@ export async function renderTiles() {
 
     if (state.mode === "edit") {
       head.append(
-        btn("⬆️", async () => { moveCategory(ci, -1); await renderTiles(); }),
-        btn("⬇️", async () => { moveCategory(ci, 1); await renderTiles(); }),
+        btn("⬆️", () => { moveCategory(ci, -1); renderTiles(); }),
+        btn("⬇️", () => { moveCategory(ci, 1); renderTiles(); }),
         btn(`➕ ${t("newTile")}`, () => openTileModal(cat.id)),
-        btn(`🗑️ ${t("deleteCategory")}`, async () => {
+        btn(`🗑️ ${t("deleteCategory")}`, () => {
           deleteCategory(cat.id);
-          await renderTiles();
+          renderTiles();
         })
       );
     }
@@ -131,40 +125,38 @@ export async function renderTiles() {
         const row = document.createElement("div");
         row.className = "row";
         row.append(
-          btn("⬆️", async e => { e.stopPropagation(); moveTile(cat.id, ti, -1); await renderTiles(); }),
-          btn("⬇️", async e => { e.stopPropagation(); moveTile(cat.id, ti, 1); await renderTiles(); }),
+          btn("⬆️", e => { e.stopPropagation(); moveTile(cat.id, ti, -1); renderTiles(); }),
+          btn("⬇️", e => { e.stopPropagation(); moveTile(cat.id, ti, 1); renderTiles(); }),
           btn("🗑️", async e => {
             e.stopPropagation();
             await deleteTile(cat.id, ti);
-            await renderTiles();
+            renderTiles();
           })
         );
         d.appendChild(row);
       }
 
-      d.onclick = async () => {
+      d.onclick = () => {
         if (state.mode === "sou") {
           state.selected[tile.id] = !state.selected[tile.id];
           if (!state.selected[tile.id]) delete state.validated[tile.id];
         }
         else if (state.mode === "dom") {
-          if (state.validated[tile.id]) delete state.validated[tile.id];
-          else state.validated[tile.id] = true;
+          state.validated[tile.id]
+            ? delete state.validated[tile.id]
+            : state.validated[tile.id] = true;
         }
         save();
-        await renderTiles();
+        renderTiles();
       };
 
       /* ===== CONTENU ===== */
-
       if (tile.type === "image" && tile.imageId) {
         const img = document.createElement("img");
-
         if (!imageUrlCache[tile.imageId]) {
           const blob = await getImage(tile.imageId);
           if (blob) imageUrlCache[tile.imageId] = URL.createObjectURL(blob);
         }
-
         img.src = imageUrlCache[tile.imageId];
         d.appendChild(img);
       } else {
@@ -203,12 +195,6 @@ function resetSelections() {
 
 function resetAll() {
   if (!confirm(t("confirmResetAll"))) return;
-
-  for (const k of Object.keys(imageUrlCache)) {
-    URL.revokeObjectURL(imageUrlCache[k]);
-    delete imageUrlCache[k];
-  }
-
   localStorage.clear();
   indexedDB.deleteDatabase("tile_images_db");
   location.reload();
@@ -230,10 +216,9 @@ function openCategoryModal() {
       </div>
     </div>
   `;
-
-  document.getElementById("createCatBtn").onclick = async () => {
+  document.getElementById("createCatBtn").onclick = () => {
     createCategoryFromModal();
-    await renderTiles();
+    renderTiles();
   };
   document.getElementById("cancelCatBtn").onclick = closeModal;
 }
@@ -270,7 +255,6 @@ function moveTile(catId, i, d) {
 
 async function deleteTile(catId, index) {
   if (!confirm(t("confirmDeleteTile"))) return;
-
   const c = state.categories.find(x => x.id === catId);
   const tile = c.tiles[index];
 
@@ -329,12 +313,10 @@ function openTileModal(catId) {
     tileType = "image"; show("imageZone"); hide("textZone");
   };
   document.getElementById("pickImage").onclick = pickImage;
-
   document.getElementById("createTile").onclick = async () => {
     await createTile();
-    await renderTiles();
+    renderTiles();
   };
-
   document.getElementById("cancelTile").onclick = closeModal;
 }
 
