@@ -1,21 +1,21 @@
 /* =====================================================
-   PALETTE — VIOLET NÉON MODERNE
+   VARIABLES — VIOLET NEON PREMIUM
    ===================================================== */
 :root {
-  --bg-main: #0b0612;
-  --bg-panel: #120a1f;
-  --bg-card: #160c26;
+  --bg-main: #0b0b12;
+  --bg-panel: #12121c;
+  --bg-card: #161625;
 
   --violet: #7b4dff;
-  --violet-soft: rgba(123, 77, 255, 0.25);
-  --violet-glow: rgba(123, 77, 255, 0.55);
+  --violet-soft: rgba(123,77,255,.18);
+  --violet-glow: rgba(123,77,255,.45);
 
+  --red: #c33;
   --green: #2ecc71;
-  --red: #e74c3c;
-  --blue: #4da6ff;
+  --blue: #3498db;
 
-  --text-main: #f2f0ff;
-  --text-muted: #b9b3d6;
+  --text-main: #f2f2f7;
+  --text-muted: #a0a0c0;
 }
 
 /* =====================================================
@@ -28,9 +28,12 @@
 body {
   margin: 0;
   font-family: system-ui, -apple-system, Segoe UI, sans-serif;
-  background:
-    radial-gradient(circle at top, #1b0f33, #05030a 70%);
+  background: radial-gradient(circle at top, #14142a, #07070c 70%);
   color: var(--text-main);
+}
+
+.hidden {
+  display: none !important;
 }
 
 /* =====================================================
@@ -38,38 +41,72 @@ body {
    ===================================================== */
 header {
   padding: 16px;
-  background: linear-gradient(180deg, #140a26, #070311);
+  background: linear-gradient(180deg, #0f0f1e, #080810);
   border-bottom: 1px solid var(--violet-soft);
 }
 
+/* ===== TITRE ===== */
 #appTitle {
-  margin: 0 0 10px;
+  margin: 0 0 14px;
   text-align: center;
-  font-size: 28px;
-  letter-spacing: 4px;
+
+  font-size: 34px;
   font-weight: 900;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+
   color: var(--violet);
-  text-shadow: 0 0 14px var(--violet-glow);
+
+  text-shadow:
+    0 0 8px rgba(123,77,255,.6),
+    0 0 20px rgba(123,77,255,.35),
+    0 0 40px rgba(123,77,255,.2);
+}
+
+#appTitle::after {
+  content: "";
+  display: block;
+  width: 90px;
+  height: 2px;
+  margin: 10px auto 0;
+  background: linear-gradient(90deg, transparent, var(--violet), transparent);
+  box-shadow: 0 0 12px var(--violet-glow);
+}
+
+/* =====================================================
+   TOP BAR
+   ===================================================== */
+.top {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 /* =====================================================
    BOUTONS
    ===================================================== */
 .btn {
-  background: linear-gradient(180deg, #1b1033, #0c0618);
+  background: linear-gradient(180deg, #1a1a2e, #0f0f1c);
   color: var(--text-main);
   border: 1px solid var(--violet-soft);
-  border-radius: 12px;
+  border-radius: 10px;
   padding: 8px 16px;
-  cursor: pointer;
+
   font-weight: 700;
   letter-spacing: 1px;
+  cursor: pointer;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.04),
+    0 0 0 transparent;
+
   transition: all .15s ease;
 }
 
 .btn:hover {
   border-color: var(--violet);
-  box-shadow: 0 0 12px var(--violet-glow);
+  box-shadow: 0 0 14px var(--violet-glow);
 }
 
 .btn.active {
@@ -87,133 +124,96 @@ main {
 }
 
 .card {
-  background: linear-gradient(180deg, #1a1033, #0b0616);
-  border-radius: 20px;
+  background: linear-gradient(180deg, #17172a, #0e0e18);
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 18px;
   padding: 16px;
+
   box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,.04),
-    0 10px 40px rgba(0,0,0,.9);
-}
-
-.row {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.hidden {
-  display: none;
+    inset 0 0 0 1px rgba(255,255,255,.02),
+    0 12px 30px rgba(0,0,0,.7);
 }
 
 /* =====================================================
-   GRID
+   GRID — VIGNETTES (TAILLE FIXE)
    ===================================================== */
 .grid {
   display: grid;
   gap: 14px;
-  grid-template-columns: repeat(2, 1fr);
-}
-
-@media (min-width: 768px) {
-  .grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
 }
 
 /* =====================================================
-   VIGNETTES — ISOLÉES / RÉGULIÈRES
+   VIGNETTES
    ===================================================== */
 .tile {
-  position: relative;          /* 🔒 ancrage */
-  isolation: isolate;          /* 🔒 empilement local */
+  position: relative;
+  width: 100%;
   aspect-ratio: 1 / 1;
-  overflow: hidden;
 
   border-radius: 16px;
-  padding: 10px;
+  overflow: hidden;
   cursor: pointer;
 
   display: grid;
   place-items: center;
 
-  background: linear-gradient(145deg, #1c1138, #0c0618);
+  background: linear-gradient(145deg, #1b1b30, #0f0f1c);
+
   box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,.04),
-    inset 0 0 25px rgba(0,0,0,.85);
+    inset 0 0 0 1px rgba(255,255,255,.05),
+    inset 0 0 30px rgba(0,0,0,.8);
 }
 
-/* --- COULEURS FONCTIONNELLES (INTOUCHÉES) --- */
-.tile.red   { border: 2px solid var(--red); }
+/* ===== COULEURS LOGIQUES (INTOUCHÉES) ===== */
+.tile.red { border: 2px solid var(--red); }
 .tile.green { border: 2px solid var(--green); }
-.tile.blue  { border: 2px solid var(--blue); }
+.tile.blue { border: 2px solid var(--blue); }
 
 /* =====================================================
-   TEXTE DANS VIGNETTE
+   CONTENU TEXTE
    ===================================================== */
 .tile > div:not(.row) {
-  width: 100%;
-  height: 100%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  text-align: center;
   padding: 14px;
+  text-align: center;
 
-  font-size: clamp(14px, 2.4vw, 18px);
-  font-weight: 800;
+  font-size: 15px;
+  font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;
 
   color: var(--text-main);
-  background: linear-gradient(180deg, #140b2a, #080410);
-  border-radius: 12px;
-
-  overflow: hidden;
-  line-height: 1.25;
-
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-
-  text-shadow: 0 2px 6px rgba(0,0,0,.9);
+  z-index: 2;
 }
 
 /* =====================================================
-   IMAGES
+   IMAGE
    ===================================================== */
 .tile img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 12px;
+  z-index: 2;
 }
 
 /* =====================================================
-   BARRE DIAGONALE — DOM (FIX DÉFINITIF)
+   BARRE DIAGONALE — DOM (AU-DESSUS)
    ===================================================== */
 .tile.done::after {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 1;
+  z-index: 10;
 
   background: linear-gradient(
     135deg,
     transparent 48%,
-    rgba(200,200,200,0.35) 49%,
-    rgba(200,200,200,0.35) 51%,
+    rgba(200,200,200,.45) 49%,
+    rgba(200,200,200,.45) 51%,
     transparent 52%
   );
 
   pointer-events: none;
-}
-
-/* CONTENU AU-DESSUS DE LA BARRE */
-.tile > * {
-  position: relative;
-  z-index: 2;
 }
 
 /* =====================================================
@@ -222,7 +222,7 @@ main {
 .modal {
   position: fixed;
   inset: 0;
-  background: rgba(10,5,20,.9);
+  background: rgba(5,5,12,.9);
   display: grid;
   place-items: center;
   z-index: 999;
